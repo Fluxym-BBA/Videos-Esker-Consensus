@@ -146,16 +146,94 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .fcnt{font-size:12px;color:var(--gray-400);font-weight:600;margin-left:auto}
 
 @media(max-width:900px){.app{grid-template-columns:1fr}.sidebar{display:none}.main{padding:20px}.topnav-search,.topnav-stat{display:none}.vgrid{grid-template-columns:1fr}}
+
+/* ===================== HOME / ROUES ESKER ===================== */
+.home{animation:fadeIn .6s ease;padding:10px 0 70px}
+.home-head{text-align:center;margin-bottom:6px}
+.home-kicker{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.home-head h1{font-size:34px;font-weight:900;letter-spacing:-1.2px;line-height:1.1;background:linear-gradient(120deg,var(--navy) 0%,var(--cyan) 55%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.home-head p{color:var(--gray-500);font-size:14px;margin-top:10px;max-width:620px;margin-left:auto;margin-right:auto;line-height:1.6}
+.toggle{display:flex;justify-content:center;margin:24px 0 4px}
+.toggle-in{display:flex;position:relative;background:var(--white);border:1px solid var(--gray-200);border-radius:50px;padding:5px;box-shadow:0 6px 24px rgba(11,32,70,.08)}
+.toggle-pill{position:absolute;top:5px;height:calc(100% - 10px);border-radius:50px;background:linear-gradient(135deg,var(--navy),var(--cyan));transition:left .45s cubic-bezier(.65,0,.35,1),width .45s cubic-bezier(.65,0,.35,1);z-index:1;box-shadow:0 4px 14px rgba(0,167,225,.35)}
+.toggle-btn{position:relative;z-index:2;border:none;background:transparent;font-family:inherit;font-size:13px;font-weight:700;color:var(--gray-500);padding:11px 24px;border-radius:50px;cursor:pointer;transition:color .35s;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.toggle-btn.on{color:#fff}
+.toggle-btn:not(.on):hover{color:var(--navy)}
+.tg-ico{width:20px;height:20px;flex:none}
+.stage{display:flex;justify-content:center;margin-top:4px}
+.wheel-wrap{width:100%;max-width:760px;transition:max-width .5s cubic-bezier(.65,0,.35,1)}
+.wheel-wrap.two{max-width:1240px}
+.wheel-svg{width:100%;height:auto;overflow:visible;display:block}
+.wheel-fade{animation:scaleIn .5s cubic-bezier(.34,1.3,.64,1) both}
+
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spinrev{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+@keyframes dash{to{stroke-dashoffset:-1000}}
+@keyframes breathe{0%,100%{opacity:.25}50%{opacity:.7}}
+.rot-slow{animation:spin 90s linear infinite}
+.rot-rev{animation:spinrev 140s linear infinite}
+.rot-fast{animation:spin 42s linear infinite}
+.dashmove{animation:dash 26s linear infinite}
+.breathe{animation:breathe 5s ease-in-out infinite}
+
+.seg{cursor:pointer;transition:transform .4s cubic-bezier(.34,1.5,.64,1),filter .3s}
+.seg .sfill{transition:fill .3s ease,stroke-width .3s}
+.seg .slab{pointer-events:none;transition:fill .3s ease}
+.seg .scnt{transition:opacity .3s,fill .3s;opacity:.75}
+.seg:hover{transform:translate(var(--tx),var(--ty));filter:drop-shadow(0 12px 26px rgba(11,32,70,.3))}
+.seg:hover .sfill{fill:var(--c)!important;stroke:#fff}
+.seg:hover .slab{fill:#fff}
+.seg:hover .scnt{opacity:1;fill:#fff}
+.seg:active{transform:translate(calc(var(--tx)*.4),calc(var(--ty)*.4))}
+
+.hubwrap{cursor:pointer}
+.hubwrap .hubring{transition:stroke .35s,opacity .35s}
+.hubwrap:hover .hubring{stroke:var(--cyan);opacity:1}
+.bandg{cursor:pointer}
+.bandg .bandfill{transition:fill .35s}
+.bandg:hover .bandfill{fill:#F59E0B}
+
+/* pills transverses */
+.xrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;max-width:960px;margin:34px auto 0;padding:0 8px}
+.xtitle{text-align:center;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray-400);margin:38px 0 2px;display:flex;align-items:center;gap:14px;max-width:960px;margin-left:auto;margin-right:auto}
+.xtitle::before,.xtitle::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gray-200),transparent)}
+.xcard{position:relative;display:flex;align-items:center;gap:13px;background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:15px 17px;cursor:pointer;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.4,.64,1),box-shadow .3s,border-color .3s}
+.xcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c);transform:scaleY(0);transform-origin:bottom;transition:transform .35s}
+.xcard::after{content:'';position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 14%,transparent),transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.xcard:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(11,32,70,.13);border-color:transparent}
+.xcard:hover::before{transform:scaleY(1)}
+.xcard:hover::after{opacity:1}
+.xico{width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;background:color-mix(in srgb,var(--c) 12%,#fff);transition:transform .35s}
+.xcard:hover .xico{transform:scale(1.12) rotate(-6deg)}
+.xmeta{min-width:0}
+.xmeta b{display:block;font-size:13.5px;font-weight:700;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xmeta span{font-size:11.5px;color:var(--gray-400);font-weight:600}
+
+/* stats bar */
+.hstats{display:flex;justify-content:center;gap:0;margin:30px auto 0;max-width:720px;background:var(--white);border:1px solid var(--gray-200);border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(11,32,70,.06)}
+.hstat{flex:1;text-align:center;padding:18px 10px;position:relative;transition:background .3s}
+.hstat+.hstat::before{content:'';position:absolute;left:0;top:22%;height:56%;width:1px;background:var(--gray-200)}
+.hstat:hover{background:var(--gray-50)}
+.hstat b{display:block;font-size:24px;font-weight:900;letter-spacing:-.8px;background:linear-gradient(135deg,var(--navy),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hstat span{font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--gray-400)}
+
+.topnav-home{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:rgba(255,255,255,.6);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);padding:7px 15px;border-radius:50px;cursor:pointer;transition:all .3s}
+.topnav-home:hover{color:#fff;border-color:var(--cyan);background:rgba(0,167,225,.18)}
+.topnav-brand{cursor:pointer}
+
+@media (max-width:1100px){.xrow{max-width:100%}}
+
 </style>
 </head>
 <body>
 <nav class="topnav">
-  <div class="topnav-brand">
+  <div class="topnav-brand" onclick="home()" title="Retour à l'accueil">
     <div class="topnav-logo">FLUXYM <em>× Esker</em></div>
     <div class="topnav-sep"></div>
     <div class="topnav-badge">Consensus Video Library</div>
   </div>
   <div class="topnav-right">
+    <div class="topnav-home" onclick="home()"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>Accueil</div>
     <div class="topnav-stat"><b id="sT">0</b> vidéos</div>
     <div class="topnav-stat"><b id="sD">—</b> de contenu</div>
     <div class="topnav-search">
@@ -167,7 +245,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 <div class="app">
   <aside class="sidebar" id="sb"></aside>
   <main class="main" id="mn">
-    <div class="welcome"><div class="welcome-icon">🎬</div><h1>Consensus Video Library</h1><p>Explorez les vidéos de démonstration Esker par module. Sélectionnez un module pour commencer.</p></div>
+
   </main>
 </div>
 
@@ -175,15 +253,16 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 // =============================================================================
 // CONFIG — Modifier ici si besoin de changer de SharePoint
 // =============================================================================
-// Option A : flu.sharepoint.com (site Fluxym_group)
-const EMBED = "https://flu.sharepoint.com/sites/Fluxym_group/_layouts/15/embed.aspx";
-const ROOT = "/sites/Fluxym_group/Sales/Sales documentation/Products - Partner/07 Esker/8. Consensus";
+// Option A (ACTIVE) : flu-portal1 - bibliotheque "Produits" = source de verite (117 videos)
+const EMBED = "https://flu-portal1.sharepoint.com/_layouts/15/embed.aspx";
+const ROOT = "/Produits/Esker/1 - Comprendre Esker/2 - Vidéos Marketing/2 - Vidéos Esker - Consensus";
 
-// Option B : flu-portal1 (décommenter si besoin)
-// const EMBED = "https://flu-portal1.sharepoint.com/_layouts/15/embed.aspx";
-// const ROOT = "/Produits/Esker/1 - Comprendre Esker/2 - Vidéos Esker - Consensus";
+// Option B (OBSOLETE) : flu.sharepoint.com / site Fluxym_group
+// ATTENTION : cette copie est INCOMPLETE (nombreux .mp4 absents) -> "probleme de connexion"
+// const EMBED = "https://flu.sharepoint.com/sites/Fluxym_group/_layouts/15/embed.aspx";
+// const ROOT = "/sites/Fluxym_group/Sales/SALES DOCUMENTATION/Products - Partner/07 Esker/8. Consensus";
 
-function url(suite,folder,file){return EMBED+"?id="+encodeURIComponent(ROOT+"/"+suite+"/"+folder+"/"+file+".mp4")}
+function url(suite,folder,file){const p=[ROOT,suite,folder,file+".mp4"].filter(x=>x&&x.length);return EMBED+"?id="+encodeURIComponent(p.join("/"))}
 
 // =============================================================================
 // DATA — 114 vidéos, noms exacts OneDrive
@@ -580,7 +659,7 @@ trFR:"<p><b>[00:00]</b> Vous gérez une stratégie de recouvrement mais il vous 
 trEN:"<p><b>[00:02]</b> When you're collecting past-due invoices, it's important to know when that cash is going to be coming on hand. Within the Collections tool in Esker, we have a dedicated Collections Forecast report. This is bringing in information from multiple different sections of the solution to show you when you should expect invoices to be paid — whether they're likely to be paid, promised to be paid, or actually scheduled to be paid.</p><p><b>[00:28]</b> Thanks so much for watching.</p>",
 trFR:"<p><b>[00:02]</b> Lorsque vous recouvrez des factures en retard, il est essentiel de savoir quand la trésorerie arrivera. Dans l'outil Collections d'Esker, un rapport de prévision dédié agrège les informations de plusieurs sections de la solution pour indiquer quand les factures seront probablement payées — qu'elles soient susceptibles d'être payées, promises en paiement, ou effectivement planifiées.</p><p><b>[00:28]</b> Merci d'avoir regardé.</p>"},
 
-  {f:"Parent-Child Hierarchies",t:"Parent-Child Hierarchies",sz:"13.2",
+  {f:"10 - Parent-Child Hierarchies",t:"Parent-Child Hierarchies",sz:"13.2",
 trEN:"<p><b>[00:02]</b> Collecting on accounts that are part of a parent-child relationship can be challenging because seeing the visibility of the overall parent account as compared to each individual account can be tough to do within ERP systems. Within the Collections tool, we have a way to combine customers — so that's what this video will show you.</p><p><b>[00:21]</b> Here you can see that these customers are already combined under parent ABC. Today I'm going to add a couple more customers into that parent company. Once I apply this, I have the option to either create a new parent customer or link them into an existing one. I'll use my existing customer and save that.</p><p><b>[00:44]</b> I'm now brought to my dashboard for the parent company. This is going to bring together the balances, the disputes, the past due for all of those child companies that are linked under the parent company.</p><p><b>[00:58]</b> You'll have the visibility into what's going on with the account as a whole within the parent company's dashboard. We also can display AR aging as well as all of the invoices and all of the credits for all of the children accounts — all within this dashboard.</p><p><b>[01:16]</b> Here I also have visibility into which accounts are part of that parent-child relationship. And if I need to, I can click out to see the details on those individual customers — I can click to get directly to this individual customer's information, get back to their dashboard, so I can see what's going on with each and every individual account.</p><p><b>[01:44]</b> So again, this is how to combine customers within the Collections tool to give you visibility for reporting at the parent level while maintaining individual reporting at the child level. Thanks so much for watching.</p>",
 trFR:"<p><b>[00:02]</b> Le recouvrement sur des comptes faisant partie d'une relation parent-enfant peut être complexe : la visibilité consolidée du compte parent par rapport à chaque compte individuel est difficile à obtenir dans les ERP. L'outil Collections d'Esker permet de regrouper les clients.</p><p><b>[00:21]</b> Ici, des clients sont déjà regroupés sous le parent ABC. On ajoute d'autres clients au groupe. On peut créer un nouveau parent ou les rattacher à un existant.</p><p><b>[00:44]</b> Le tableau de bord du parent regroupe les soldes, litiges et retards de toutes les filiales rattachées.</p><p><b>[00:58]</b> Visibilité complète du compte parent : ancienneté des créances, factures et avoirs de tous les comptes enfants — le tout dans un seul tableau de bord.</p><p><b>[01:16]</b> On voit quels comptes font partie de la relation parent-enfant. En un clic, on accède au détail de chaque client individuel et à son propre tableau de bord.</p><p><b>[01:44]</b> Voilà comment regrouper des clients dans l'outil Collections pour obtenir un reporting au niveau parent tout en conservant le reporting individuel au niveau enfant. Merci d'avoir regardé.</p>"},
 
@@ -622,7 +701,7 @@ trFR:"<p><b>[00:02]</b> Quand de nouveaux clients souhaitent demander des condit
 ]},
 {id:"cd",label:"Claims & Deductions",suite:"O2C",icon:"⚖️",folder:"Deduction Claims",videos:[
 
-  {f:"1 - Claims & Deductions Overview",t:"Claims & Deductions Overview (Aaron)",sz:"27.6",
+  {f:"1 - Claims & Deductions Overview (Erin)",t:"Claims & Deductions Overview (Erin)",sz:"27.6",
 trEN:"<p><b>[00:02]</b> Hi there, Aaron with Esker here. Today I'm going to walk you through a high-level demonstration of our Deductions & Claims solution, focusing on customer success stories to explain how Esker has helped our existing customers and how we can help you as well.</p><p><b>[00:19]</b> One of our existing customers came to Esker because they had over 10,000 trade promotions that they were processing annually. Due to this high volume, they were having a hard time keeping up and were processing those late — that really started causing friction with their customers, especially when they tried to dispute those deductions after a validity date.</p><p><b>[00:42]</b> With Esker, they were able to automate those deductions through our trade promotions, validating if they were valid or not. Automating those that were valid freed up time so they could focus on the ones that weren't and be able to recoup those.</p><p><b>[01:01]</b> Clicking into a sales promotion here, you can see the document provided by the customer on the right, and on the left is Esker's validation screen. We've extracted information off of the document using our Esker Synergy AI technologies. Here we're validating that all of this information is correct — we have 3 green checks, meaning everything has been validated against the ERP. But additionally, we're also checking that this promotion the customer is referencing is valid. I can see that this discount they are taking is valid. We have everything automated here — because it was 100% validated, it could go through automatically. If you wish to have a workflow, you can set that up as well.</p><p><b>[02:03]</b> Another customer came to us because they also had a lot of promotional agreements that were really hard to track — it was hard to stay accurate for accounting purposes and cash application. By using the Esker solution and those automated trade promotions, they were able to save 500 hours, processing 50% of their promotional invoices in less than a minute. This also gave them great visibility into what claims were being processed.</p><p><b>[02:36]</b> Looking at another sales promotion, we can see what would happen if the customer is taking something that is not valid. We're running this against known trade promotions — this one is past the due date, this one does not exist, and this one, the customer took too high of a deduction. We're able to validate and give visibility into what is not an existing promotion so that it can be resolved.</p><p><b>[03:09]</b> You can also reach out to your customer from the solution. If they're taking something that is not valid, you can request documentation here. You can also attach additional documentation — maybe from the carrier regarding damage or backup from the customer that this is a valid deduction. All of that can be attached here. Once the final approver receives the deduction claim, they'll be able to have everything all in one place for quick visibility into whether or not this is valid.</p><p><b>[03:50]</b> This was a high-level overview of the Deductions & Claims solution — how we can process trade promotions automatically and also process through different claims from your customers. Thanks for watching.</p>",
 trFR:"<p><b>[00:02]</b> Bonjour, ici Aaron d'Esker. Aujourd'hui, je vais vous présenter une démonstration de notre solution Deductions & Claims, en m'appuyant sur des retours clients pour illustrer comment Esker a aidé nos clients existants et comment nous pouvons vous aider aussi.</p><p><b>[00:19]</b> Un de nos clients traitait plus de 10 000 promotions commerciales par an. Ce volume élevé entraînait des retards de traitement, créant des frictions avec leurs clients — surtout lorsqu'ils tentaient de contester des déductions après la date de validité.</p><p><b>[00:42]</b> Avec Esker, ils ont pu automatiser la validation de ces déductions via les promotions commerciales. L'automatisation des déductions valides a libéré du temps pour se concentrer sur celles qui ne l'étaient pas et les récupérer.</p><p><b>[01:01]</b> En ouvrant une promotion commerciale : à droite, le document fourni par le client ; à gauche, l'écran de validation Esker. Les informations sont extraites grâce aux technologies d'IA Esker Synergy. Trois coches vertes = tout validé contre l'ERP. On vérifie aussi que la promotion référencée est valide. Tout étant validé à 100%, le traitement est entièrement automatisé. Un workflow d'approbation peut être ajouté si souhaité.</p><p><b>[02:03]</b> Un autre client avait beaucoup d'accords promotionnels difficiles à suivre, avec des problèmes de fiabilité comptable et de rapprochement de trésorerie. Grâce à Esker et aux promotions automatisées, ils ont économisé 500 heures et traité 50% de leurs factures promotionnelles en moins d'une minute — avec une visibilité accrue sur les réclamations traitées.</p><p><b>[02:36]</b> Autre exemple : une promotion non valide. La vérification contre les promotions connues révèle : une dépassant la date limite, une inexistante, et une déduction trop élevée. Esker identifie et signale ces écarts pour résolution.</p><p><b>[03:09]</b> On peut aussi contacter le client directement depuis la solution pour demander des justificatifs. Les documents complémentaires (justificatifs transporteur, preuves de dommage, etc.) peuvent être attachés. L'approbateur final dispose de tout en un seul endroit pour une décision rapide.</p><p><b>[03:50]</b> Voilà un aperçu de la solution Deductions & Claims — traitement automatisé des promotions commerciales et gestion des réclamations clients. Merci d'avoir regardé.</p>"},
 
@@ -682,34 +761,42 @@ trEN:"<p><b>[00:00]</b> Order status questions are very common in customer servi
 trFR:"<p><b>[00:00]</b> Les questions de statut de commande sont très fréquentes dans les services client. Ces demandes simples mobilisent les équipes et les détournent d'activités à plus forte valeur ajoutée.</p><p><b>[00:13]</b> Cette vidéo montre comment Esker rationalise et automatise ces types de demandes. En présentant directement les informations de statut, le service client n'a plus besoin de consulter plusieurs systèmes. Cela réduit les erreurs et accélère la résolution.</p><p><b>[00:32]</b> Même pour un appel téléphonique, on peut enregistrer la demande dans Esker — toutes les interactions client sont centralisées.</p><p><b>[00:40]</b> Exemple : le client demande le statut de sa commande et fournit le numéro. Dès réception, Esker recherche la commande et affiche toutes les informations disponibles : client, numéro de commande, documents associés (commande, confirmation, avis d'expédition), lien de suivi.</p><p><b>[01:21]</b> Esker a fait tout le travail : réponse pré-rédigée via les templates IA ou dynamiques configurables. Il ne reste qu'à envoyer l'email au client et archiver la demande.</p><p><b>[01:40]</b> Voilà comment Esker centralise les informations de statut de commande et accélère le traitement de ces demandes. Merci d'avoir regardé.</p>"},
 
 ]},
+{id:"gl",label:"Global / Plateforme",suite:"GLOBAL",sp:"",icon:"🏛️",folder:"Global",videos:[
+{f:"Esker - Office of the CFO Dashboard",t:"Office of the CFO Dashboard",sz:"63.7",trEN:"",trFR:""},
+{f:"FR - Conformité France B2B 2026",t:"FR - Conformité France B2B 2026",sz:"176.1",trEN:"",trFR:""},
+{f:"SDA - Using for attaching invoice PDFs to invoice records",t:"SDA - Attaching invoice PDFs to invoice records",sz:"97.7",trEN:"",trFR:""}
+]}
 ];
 
 // =============================================================================
 // STATE & HELPERS
 // =============================================================================
 let curMod=null,curVid=null;
-function getUrl(m,v){return url(m.suite,m.folder,v.f)}
+function getUrl(m,v){return url(m.sp!==undefined?m.sp:m.suite,m.folder,v.f)}
 
 // =============================================================================
 // SIDEBAR
 // =============================================================================
 function initSb(){
   const sb=document.getElementById("sb");
-  const g={S2P:[],O2C:[]};
-  M.forEach(m=>{if(m.suite==="S2P")g.S2P.push(m);else g.O2C.push(m)});
-  const labels={S2P:"Source-to-Pay",O2C:"Order-to-Cash"};
+  const groups=[
+    {k:"S2P",label:"Source-to-Pay",ids:ORDER_S2P,extra:ORDER_X},
+    {k:"O2C",label:"Order-to-Cash",ids:ORDER_O2C,extra:[]},
+    {k:"GLOBAL",label:"Global / Plateforme",ids:["gl"],extra:[]}
+  ];
+  const item=id=>{const m=byId(id);if(!m)return"";
+    return '<div class="sb-item" data-id="'+m.id+'" onclick="sel(\''+m.id+'\')">'
+      +'<span class="sb-icon">'+m.icon+'</span>'+m.label
+      +'<span class="sb-cnt">'+m.videos.length+'</span>'
+      +'<span class="sb-arr">→</span></div>';};
   let h="";
-  for(const[k,mods]of Object.entries(g)){
-    h+='<div class="sb-group"><div class="sb-title">'+labels[k]+'</div>';
-    mods.forEach(m=>{
-      h+='<div class="sb-item" data-id="'+m.id+'" onclick="sel(\''+m.id+'\')">'
-        +'<span class="sb-icon">'+m.icon+'</span>'+m.label
-        +'<span class="sb-cnt">'+m.videos.length+'</span>'
-        +'<span class="sb-arr">→</span></div>';
-    });
+  groups.forEach((g,gi)=>{
+    h+='<div class="sb-group"><div class="sb-title">'+g.label+'</div>';
+    h+=g.ids.map(item).join("");
+    if(g.extra&&g.extra.length){h+='<div class="sb-div"></div>'+g.extra.map(item).join("")}
     h+='</div>';
-    if(k==="S2P")h+='<div class="sb-div"></div>';
-  }
+    if(gi<groups.length-1)h+='<div class="sb-div"></div>';
+  });
   sb.innerHTML=h;
   let tot=0,szTotal=0;
   M.forEach(m=>{tot+=m.videos.length;m.videos.forEach(v=>{szTotal+=parseFloat(v.sz||0)})});
@@ -885,7 +972,7 @@ function dltr(){
 // =============================================================================
 document.getElementById("gSearch").addEventListener("input",function(){
   const q=this.value.toLowerCase().trim();
-  if(!q){if(curMod)sel(curMod.id);return;}
+  if(!q){if(curMod)sel(curMod.id);else home();return;}
   let r=[];
   M.forEach(mod=>{mod.videos.forEach((v,i)=>{
     if(v.t.toLowerCase().includes(q)||mod.label.toLowerCase().includes(q))r.push({mod,v,i});
@@ -903,8 +990,253 @@ document.getElementById("gSearch").addEventListener("input",function(){
     }).join("")+'</div>';
 });
 
+
+// =============================================================================
+// HOME — ROUES ESKER (SVG généré, 100% autonome)
+// =============================================================================
+const ORDER_S2P=["so","sm","ctm","pr","ap","em"];          // ordre imposé Source-to-Pay
+const ORDER_O2C=["crm","cim","om","id","ca","cd","com"];   // ordre imposé Order-to-Cash
+const ORDER_X  =["vp","sim","epay","ai"];                  // socle / transverse
+const COLORS={so:"#8CC63F",sm:"#00A7E1",ctm:"#5B6B7A",pr:"#2E3F4F",ap:"#F5A623",em:"#E8465A",
+              crm:"#7D8B99",cim:"#2E3F4F",om:"#F5A623",id:"#E8465A",ca:"#8CC63F",cd:"#4FC3D9",com:"#00A7E1",
+              vp:"#6366F1",sim:"#14B8A6",epay:"#F59E0B",ai:"#A855F7",gl:"#ED1C24"};
+const WLABEL={so:"Sourcing",sm:"Supplier Management",ctm:"Contract Management",pr:"Procurement",
+              ap:"Accounts Payable & Compliance",em:"Expense Management",
+              crm:"Credit Management",cim:"Customer Inquiry Management",om:"Order Management",
+              id:"Invoice Delivery & Compliance",ca:"Cash Application",cd:"Claims & Deductions",
+              com:"Collections Management"};
+const byId=id=>M.find(m=>m.id===id);
+const TOTV=M.reduce((a,m)=>a+m.videos.length,0);
+let curView=localStorage.getItem("eskerView")||"one";
+
+/* ---------- helpers géométrie ---------- */
+function pol(cx,cy,r,a){const t=(a-90)*Math.PI/180;return[cx+r*Math.cos(t),cy+r*Math.sin(t)]}
+function ring(cx,cy,r1,r2,a1,a2,pad){
+  pad=pad||0;a1+=pad;a2-=pad;
+  const[x1,y1]=pol(cx,cy,r2,a1),[x2,y2]=pol(cx,cy,r2,a2),
+        [x3,y3]=pol(cx,cy,r1,a2),[x4,y4]=pol(cx,cy,r1,a1),la=(a2-a1)>180?1:0;
+  return`M${x1.toFixed(2)} ${y1.toFixed(2)}A${r2} ${r2} 0 ${la} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}L${x3.toFixed(2)} ${y3.toFixed(2)}A${r1} ${r1} 0 ${la} 0 ${x4.toFixed(2)} ${y4.toFixed(2)}Z`;
+}
+function arc(cx,cy,r,a1,a2){
+  const[x1,y1]=pol(cx,cy,r,a1),[x2,y2]=pol(cx,cy,r,a2),la=Math.abs(a2-a1)>180?1:0,sw=a2>a1?1:0;
+  return`M${x1.toFixed(2)} ${y1.toFixed(2)}A${r} ${r} 0 ${la} ${sw} ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+}
+function wrap(txt,max){
+  const w=txt.split(" "),l=[];let c="";
+  w.forEach(x=>{if((c+" "+x).trim().length>max&&c){l.push(c);c=x}else c=(c?c+" ":"")+x});
+  if(c)l.push(c);return l.slice(0,3);
+}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function arcText(cx,cy,r,aMid,str,fs,fill,ls,inward,weight){
+  ls=(ls===undefined?0:ls);
+  const adv=c=>(c===" "?fs*0.30:(/[·.\-&]/.test(c)?fs*0.38:fs*0.63))+ls;
+  const chars=Array.from(str), ws=chars.map(adv);
+  const perDeg=Math.PI*r/180, totalDeg=ws.reduce((a,b)=>a+b,0)/perDeg, dir=inward?-1:1;
+  let a=aMid-dir*totalDeg/2, out="";
+  chars.forEach((ch,i)=>{
+    const wd=ws[i]/perDeg, ac=a+dir*wd/2, [x,y]=pol(cx,cy,r,ac), rot=inward?ac+180:ac;
+    if(ch!==" ")out+=`<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" transform="rotate(${rot.toFixed(2)} ${x.toFixed(2)} ${y.toFixed(2)})" text-anchor="middle" dy="${(fs*0.34).toFixed(2)}" font-size="${fs}" font-weight="${weight||800}" fill="${fill}">${esc(ch)}</text>`;
+    a+=dir*wd;
+  });
+  return `<g pointer-events="none">${out}</g>`;
+}
+
+
+/* ---------- un segment cliquable ---------- */
+function segment(cx,cy,r1,r2,a1,a2,id,fs,maxc){
+  const m=byId(id);if(!m)return"";
+  const am=(a1+a2)/2,c=COLORS[id]||"#64748b",lab=WLABEL[id]||m.label;
+  const[tx,ty]=pol(0,0,9,am);
+  let rot=((am-90)%360+360)%360; if(rot>90&&rot<270)rot+=180;
+  const rl=(r1+r2)/2+2,[lx,ly]=pol(cx,cy,rl,am);
+  const lines=wrap(lab,maxc||17);
+  const lh=fs+2.4, blockH=(lines.length)*lh, off=-(blockH-lh)/2-lh*.25;
+  let t=`<text class="slab" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" transform="rotate(${rot.toFixed(2)} ${lx.toFixed(1)} ${ly.toFixed(1)})" text-anchor="middle" font-size="${fs}" font-weight="700" fill="#2E3F4F" letter-spacing=".2">`;
+  lines.forEach((L,i)=>{t+=`<tspan x="${lx.toFixed(1)}" dy="${i===0?off.toFixed(1):lh.toFixed(1)}">${esc(L)}</tspan>`});
+  t+=`<tspan class="scnt" x="${lx.toFixed(1)}" dy="${(lh+3).toFixed(1)}" font-size="${(fs-2.5).toFixed(1)}" font-weight="800" fill="${c}">${m.videos.length} vidéo${m.videos.length>1?'s':''}</tspan>`;
+  t+=`</text>`;
+  return`<g class="seg" style="--c:${c};--tx:${tx.toFixed(2)}px;--ty:${ty.toFixed(2)}px" onclick="sel('${id}')">
+  <title>${esc(m.label)} — ${m.videos.length} vidéos</title>
+  <path class="sfill" d="${ring(cx,cy,r1,r2,a1,a2,.55)}" fill="#fff" stroke="${c}" stroke-width="2.2" stroke-linejoin="round"/>
+  <path d="${ring(cx,cy,r1,r1+6,a1,a2,.55)}" fill="${c}" opacity=".92" pointer-events="none"/>
+  ${t}</g>`;
+}
+
+/* ---------- décor animé ---------- */
+function decor(cx,cy,R){
+  let d=`<g class="rot-slow" style="transform-origin:${cx}px ${cy}px">
+    <circle cx="${cx}" cy="${cy}" r="${R+26}" fill="none" stroke="#00A7E1" stroke-width="1.2" stroke-dasharray="2 13" opacity=".45"/></g>
+  <g class="rot-rev" style="transform-origin:${cx}px ${cy}px">
+    <circle cx="${cx}" cy="${cy}" r="${R+44}" fill="none" stroke="#6366F1" stroke-width="1" stroke-dasharray="26 20" opacity=".2"/></g>
+  <g class="rot-fast" style="transform-origin:${cx}px ${cy}px">`;
+  for(let i=0;i<3;i++){const[x,y]=pol(cx,cy,R+26,i*120);d+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.5" fill="#00A7E1" opacity=".85"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#00A7E1" opacity=".18"/>`}
+  d+=`</g><g class="rot-rev" style="transform-origin:${cx}px ${cy}px">`;
+  for(let i=0;i<2;i++){const[x,y]=pol(cx,cy,R+44,40+i*180);d+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#A855F7" opacity=".6"/>`}
+  return d+`</g>`;
+}
+function icoBox(x,y,sc,c){return`<g transform="translate(${x} ${y}) scale(${sc})" fill="none" stroke="${c}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M-14 -7 0 -14 14 -7 14 8 0 15 -14 8Z"/><path d="M-14 -7 0 0 14 -7"/><path d="M0 0V15"/></g>`}
+function icoBrief(x,y,sc,c){return`<g transform="translate(${x} ${y}) scale(${sc})" fill="none" stroke="${c}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><rect x="-15" y="-6" width="30" height="20" rx="3"/><path d="M-6 -6v-4a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v4"/><path d="M-15 2h30"/></g>`}
+function icoBuild(x,y,sc,c){return`<g transform="translate(${x} ${y}) scale(${sc})" fill="none" stroke="${c}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M-13 15V-13h18v28"/><path d="M5 15V-2h9v17"/><path d="M-8 -7h3M-1 -7h3M-8 0h3M-1 0h3M-8 7h3M-1 7h3"/></g>`}
+function icoAI(x,y,sc,c){let g=`<g transform="translate(${x} ${y}) scale(${sc})" stroke="${c}" stroke-width="1.8" fill="none">`;
+  const P=[[0,-11],[10,-4],[7,8],[-7,8],[-10,-4]];
+  P.forEach((a,i)=>{P.forEach((b,j)=>{if(j>i)g+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" opacity=".45"/>`})});
+  P.forEach(a=>{g+=`<circle cx="${a[0]}" cy="${a[1]}" r="3" fill="${c}" stroke="none"/>`});
+  return g+`<circle cx="0" cy="0" r="2.2" fill="${c}" stroke="none"/></g>`}
+
+function eskerLogo(cx,cy,sc){
+  return`<g transform="translate(${cx} ${cy}) scale(${sc})">
+    <text x="0" y="0" text-anchor="middle" font-size="46" font-weight="900" letter-spacing="1.5" fill="#ED1C24" font-family="Inter,sans-serif">ESKER</text>
+    <text x="78" y="-22" text-anchor="middle" font-size="13" font-weight="700" fill="#ED1C24">®</text></g>`;
+}
+
+/* ---------- ROUE UNIQUE ---------- */
+function wheelOne(){
+  const C=410,R2=392,R1=252,HUB=228;
+  const o1=4,o2=150, b1=154,b2=206, s1=210,s2=356;
+  let g=`<svg class="wheel-svg wheel-fade" viewBox="0 0 820 820" role="img" aria-label="Roue Esker Office of the CFO">
+  <defs>
+    <linearGradient id="gBand" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FBBF24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+    <radialGradient id="gHub"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#F3F7FB"/></radialGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#0B2046" flood-opacity=".1"/></filter>
+  </defs>`;
+  g+=decor(C,C,R2);
+  g+=`<circle cx="${C}" cy="${C}" r="${HUB}" fill="url(#gHub)" filter="url(#sh)"/>`;
+  g+=`<circle class="breathe" cx="${C}" cy="${C}" r="${HUB-9}" fill="none" stroke="#00A7E1" stroke-width="1" stroke-dasharray="4 9"/>`;
+  // arcs de suite + libellés incurvés
+  g+=`<path d="${arc(C,C,R1-30,s1+4,s2-4)}" fill="none" stroke="#00A7E1" stroke-width="3.5" stroke-linecap="round"/>`;
+  g+=`<path d="${arc(C,C,R1-30,o1+4,o2-4)}" fill="none" stroke="#00A7E1" stroke-width="3.5" stroke-linecap="round"/>`;
+  g+=arcText(C,C,R1-14,(s1+s2)/2,"SOURCE-TO-PAY",18,"#0B2046",4,false,900);
+  g+=arcText(C,C,R1-14,(o1+o2)/2,"ORDER-TO-CASH",18,"#0B2046",4,false,900);
+  // flèches de sens
+  const[ax,ay]=pol(C,C,R1-30,s2-4),[bx,by]=pol(C,C,R1-30,o2-4);
+  g+=`<circle cx="${ax.toFixed(1)}" cy="${ay.toFixed(1)}" r="7" fill="#00A7E1"/><circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="7" fill="#00A7E1"/>`;
+  // segments
+  const ws=(s2-s1)/ORDER_S2P.length, wo=(o2-o1)/ORDER_O2C.length;
+  ORDER_S2P.forEach((id,i)=>{g+=segment(C,C,R1,R2,s1+i*ws,s1+(i+1)*ws,id,13,15)});
+  ORDER_O2C.forEach((id,i)=>{g+=segment(C,C,R1,R2,o1+i*wo,o1+(i+1)*wo,id,13,15)});
+  // bandeau orange = socle plateforme (clic -> Global)
+  g+=`<g class="bandg" onclick="sel('gl')"><title>Socle plateforme &amp; Synergy AI — ${byId('gl').videos.length} vidéos</title>
+    <path class="bandfill" d="${ring(C,C,R1,R2,b1,b2,.55)}" fill="url(#gBand)"/>`;
+  g+=arcText(C,C,R2-24,180,"AI AGENTS · B2B PAYMENTS",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-47,180,"CONNECTIVITY SUITE · DATALAKE",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-70,180,"UNIFIED UX · ISO 27001",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-93,180,"PLATEFORME COMMUNE",10,"#92400E",1.6,true,900);
+  g+=`</g>`;
+  // pastille Synergy AI
+  const[sx,sy]=pol(C,C,R1+2,180);
+  g+=`<g class="hubwrap" onclick="sel('gl')"><title>Global / Plateforme</title>
+    <circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="42" fill="#fff" stroke="#F59E0B" stroke-width="3"/>
+    <circle class="hubring rot-slow" style="transform-origin:${sx.toFixed(1)}px ${sy.toFixed(1)}px" cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="48" fill="none" stroke="#F59E0B" stroke-width="1.6" stroke-dasharray="5 7" opacity=".6"/>
+    ${icoAI(sx,sy-7,.72,"#B45309")}
+    <text x="${sx.toFixed(1)}" y="${(sy+22).toFixed(1)}" text-anchor="middle" font-size="8.5" font-weight="900" letter-spacing=".8" fill="#92400E">SYNERGY AI</text></g>`;
+  // centre
+  g+=eskerLogo(C,C-52,1);
+  g+=`<text x="${C}" y="${C-14}" text-anchor="middle" font-size="22" font-weight="900" fill="#0B2046" letter-spacing="-.5">AI Automation Suite</text>
+      <text x="${C}" y="${C+14}" text-anchor="middle" font-size="22" font-weight="900" fill="#0B2046" letter-spacing="-.5">for the Office of the CFO</text>
+      <text x="${C}" y="${C+48}" text-anchor="middle" font-size="12" font-weight="700" fill="#9CA3AF" letter-spacing="1.6">${TOTV} VIDÉOS · ${M.length} MODULES</text>
+      <text x="${C}" y="${C+74}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#00A7E1" letter-spacing=".4">Cliquez sur un module pour explorer ▸</text>`;
+  return g+`</svg>`;
+}
+
+/* ---------- DEUX ROUES ---------- */
+function wheelTwo(){
+  const LY=352,LX=306,RX=1194,CX=750,R2=248,R1=136,HUB=124;
+  let g=`<svg class="wheel-svg wheel-fade" viewBox="0 0 1500 760" role="img" aria-label="Les deux roues Esker">
+  <defs>
+    <linearGradient id="gRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2546A"/><stop offset="1" stop-color="#D81E3C"/></linearGradient>
+    <filter id="sh2" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="9" stdDeviation="14" flood-color="#0B2046" flood-opacity=".12"/></filter>
+  </defs>`;
+  // ruban "cashflow" en fond
+  g+=`<g opacity=".5">
+   <path class="dashmove" d="${arc(LX,LY,R2+52,20,340)}" fill="none" stroke="#C9D2DA" stroke-width="22" stroke-linecap="round" stroke-dasharray="40 16"/>
+   <path class="dashmove" d="${arc(RX,LY,R2+52,20,340)}" fill="none" stroke="#C9D2DA" stroke-width="22" stroke-linecap="round" stroke-dasharray="40 16"/>
+  </g>`;
+  g+=`<text x="${LX}" y="${LY+R2+108}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#7D8B99" letter-spacing="1.6">&lt;&lt;&lt; VOTRE CASHFLOW</text>`;
+  g+=`<text x="${RX}" y="${LY+R2+108}" text-anchor="middle" font-size="12.5" font-weight="800" fill="#7D8B99" letter-spacing="1.6">VOTRE CASHFLOW &gt;&gt;&gt;</text>`;
+  g+=decor(LX,LY,R2)+decor(RX,LY,R2);
+  // roue gauche : S2P
+  const ws=360/ORDER_S2P.length;
+  ORDER_S2P.forEach((id,i)=>{g+=segment(LX,LY,R1,R2,-90+i*ws,-90+(i+1)*ws,id,12,14)});
+  g+=`<circle cx="${LX}" cy="${LY}" r="${HUB}" fill="#fff" filter="url(#sh2)"/>
+      <circle cx="${LX}" cy="${LY}" r="${HUB-8}" fill="none" stroke="#00A7E1" stroke-width="7"/>
+      ${icoBox(LX,LY-26,1.05,"#00A7E1")}
+      <text x="${LX}" y="${LY+22}" text-anchor="middle" font-size="16" font-weight="900" fill="#0B2046">Vos</text>
+      <text x="${LX}" y="${LY+42}" text-anchor="middle" font-size="16" font-weight="900" fill="#0B2046">fournisseurs</text>`;
+  // roue droite : O2C
+  const wo=360/ORDER_O2C.length;
+  ORDER_O2C.forEach((id,i)=>{g+=segment(RX,LY,R1,R2,-90+i*wo,-90+(i+1)*wo,id,12,14)});
+  g+=`<circle cx="${RX}" cy="${LY}" r="${HUB}" fill="#fff" filter="url(#sh2)"/>
+      <circle cx="${RX}" cy="${LY}" r="${HUB-8}" fill="none" stroke="#F5A623" stroke-width="7"/>
+      ${icoBrief(RX,LY-30,1.05,"#F5A623")}
+      <text x="${RX}" y="${LY+22}" text-anchor="middle" font-size="16" font-weight="900" fill="#0B2046">Vos</text>
+      <text x="${RX}" y="${LY+42}" text-anchor="middle" font-size="16" font-weight="900" fill="#0B2046">clients</text>`;
+  // centre : votre entreprise + plateforme Esker
+  g+=`<g class="hubwrap" onclick="sel('gl')"><title>Plateforme Esker — Global</title>
+      <circle class="hubring rot-slow" style="transform-origin:${CX}px ${LY}px" cx="${CX}" cy="${LY}" r="188" fill="none" stroke="#00A7E1" stroke-width="2" stroke-dasharray="8 11" opacity=".45"/>
+      <circle cx="${CX}" cy="${LY}" r="166" fill="none" stroke="#00A7E1" stroke-width="12" opacity=".9"/>
+      <circle cx="${CX}" cy="${LY}" r="142" fill="url(#gRed)" filter="url(#sh2)"/>
+      ${icoBuild(CX,LY-48,1.0,"#ffffff")}
+      <text x="${CX}" y="${LY+6}" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">Votre entreprise</text>
+      <text x="${CX}" y="${LY+32}" text-anchor="middle" font-size="12" font-weight="700" fill="rgba(255,255,255,.85)">Plateforme Esker · Synergy AI</text>
+      <text x="${CX}" y="${LY+54}" text-anchor="middle" font-size="11" font-weight="800" fill="rgba(255,255,255,.7)" letter-spacing=".6">${byId('gl').videos.length} vidéos ▸</text></g>`;
+  g+=`<text x="${CX}" y="${LY-196}" text-anchor="middle" font-size="12" font-weight="900" fill="#00A7E1" letter-spacing="3">ESKER PLATFORM</text>`;
+  g+=eskerLogo(CX,66,.82);
+  g+=`<text x="${CX}" y="98" text-anchor="middle" font-size="13" font-weight="700" fill="#9CA3AF" letter-spacing="1.4">SOURCE-TO-PAY &amp; ORDER-TO-CASH · ${TOTV} VIDÉOS</text>`;
+  // titres suites
+  g+=`<text x="34" y="${LY}" text-anchor="middle" font-size="20" font-weight="900" fill="#0B2046" letter-spacing="3.5" transform="rotate(-90 34 ${LY})">SOURCE-TO-PAY</text>`;
+  g+=`<text x="1468" y="${LY}" text-anchor="middle" font-size="20" font-weight="900" fill="#0B2046" letter-spacing="3.5" transform="rotate(90 1468 ${LY})">ORDER-TO-CASH</text>`;
+  return g+`</svg>`;
+}
+
+/* ---------- rendu de la home ---------- */
+function home(){
+  curMod=null;curVid=null;
+  document.querySelectorAll(".sb-item").forEach(e=>e.classList.remove("on"));
+  const tot=M.reduce((a,m)=>a+m.videos.length,0);
+  const go=M.reduce((a,m)=>a+m.videos.reduce((b,v)=>b+parseFloat(v.sz||0),0),0)/1024;
+  const mn=document.getElementById("mn");
+  mn.innerHTML=`<div class="home">
+   <div class="home-head">
+     <div class="home-kicker">Esker Consensus · Video Library</div>
+     <h1>L'AI Automation Suite<br>pour l'Office of the CFO</h1>
+     <p>Choisissez votre représentation, puis cliquez directement sur le module que vous souhaitez explorer.</p>
+   </div>
+   <div class="toggle"><div class="toggle-in" id="tgi">
+     <div class="toggle-pill" id="tgp"></div>
+     <button class="toggle-btn" id="tb-one" onclick="setView('one')">
+       <svg class="tg-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>Une roue</button>
+     <button class="toggle-btn" id="tb-two" onclick="setView('two')">
+       <svg class="tg-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7.5" cy="12" r="5.6"/><circle cx="16.5" cy="12" r="5.6"/></svg>Les deux roues</button>
+   </div></div>
+   <div class="stage"><div class="wheel-wrap" id="ww"></div></div>
+   <div class="xtitle">Socle plateforme &amp; services transverses</div>
+   <div class="xrow">${ORDER_X.concat(["gl"]).map(id=>{const m=byId(id);if(!m)return"";
+     return `<div class="xcard" style="--c:${COLORS[id]}" onclick="sel('${id}')" onmousemove="this.style.setProperty('--mx',(event.offsetX)+'px');this.style.setProperty('--my',(event.offsetY)+'px')">
+       <div class="xico">${m.icon}</div><div class="xmeta"><b>${m.label}</b><span>${m.videos.length} vidéos</span></div></div>`}).join("")}</div>
+   <div class="hstats">
+     <div class="hstat"><b>${tot}</b><span>Vidéos</span></div>
+     <div class="hstat"><b>${M.length}</b><span>Modules</span></div>
+     <div class="hstat"><b>${go.toFixed(1)} Go</b><span>De contenu</span></div>
+     <div class="hstat"><b>EN · FR</b><span>Transcripts</span></div>
+   </div></div>`;
+  paintWheel();
+}
+function paintWheel(){
+  const ww=document.getElementById("ww");if(!ww)return;
+  ww.classList.toggle("two",curView==="two");
+  ww.innerHTML=curView==="two"?wheelTwo():wheelOne();
+  const a=document.getElementById("tb-one"),b=document.getElementById("tb-two"),p=document.getElementById("tgp");
+  if(!a)return;
+  a.classList.toggle("on",curView==="one");b.classList.toggle("on",curView==="two");
+  const t=curView==="one"?a:b;
+  p.style.left=(t.offsetLeft)+"px";p.style.width=(t.offsetWidth)+"px";
+}
+function setView(v){curView=v;try{localStorage.setItem("eskerView",v)}catch(e){}paintWheel()}
+window.addEventListener("resize",()=>{if(!curMod)paintWheel()});
+
 // INIT
 initSb();
+home();
 </script>
 </body>
 </html>
