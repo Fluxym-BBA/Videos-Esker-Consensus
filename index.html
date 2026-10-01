@@ -1114,17 +1114,21 @@ function wheelOne(){
   const ws=(s2-s1)/ORDER_S2P.length, wo=(o2-o1)/ORDER_O2C.length;
   ORDER_S2P.forEach((id,i)=>{g+=segment(C,C,R1,R2,s1+i*ws,s1+(i+1)*ws,id,13,15)});
   ORDER_O2C.forEach((id,i)=>{g+=segment(C,C,R1,R2,o1+i*wo,o1+(i+1)*wo,id,13,15)});
-  // bandeau orange = socle plateforme (clic -> Global)
-  g+=`<g class="bandg" onclick="sel('gl')"><title>Socle plateforme &amp; Synergy AI — ${byId('gl').videos.length} vidéos</title>
+  // bandeau orange = Synergy AI / Esker AI (clic -> Esker AI)
+  g+=`<g class="bandg" onclick="sel('ai')"><title>Esker AI &amp; Synergy AI — ${byId('ai').videos.length} vidéos</title>
     <path class="bandfill" d="${ring(C,C,R1,R2,b1,b2,.55)}" fill="url(#gBand)"/>`;
-  g+=arcText(C,C,R2-24,180,"AI AGENTS · B2B PAYMENTS",12,"#6B3E00",1.2,true,800);
-  g+=arcText(C,C,R2-47,180,"CONNECTIVITY SUITE · DATALAKE",12,"#6B3E00",1.2,true,800);
-  g+=arcText(C,C,R2-70,180,"UNIFIED UX · ISO 27001",12,"#6B3E00",1.2,true,800);
-  g+=arcText(C,C,R2-93,180,"PLATEFORME COMMUNE",10,"#92400E",1.6,true,900);
+  // Gauche de la pastille : AI AGENTS, B2B PAYMENTS, CONNECTIVITY SUITE
+  g+=arcText(C,C,R2-26,164,"AI AGENTS",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-50,164,"B2B PAYMENTS",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-74,164,"CONNECTIVITY SUITE",10.5,"#6B3E00",1.0,true,800);
+  // Droite de la pastille : UNIFIED UX, DATALAKE, ISO 27001
+  g+=arcText(C,C,R2-26,196,"UNIFIED UX",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-50,196,"DATALAKE",12,"#6B3E00",1.2,true,800);
+  g+=arcText(C,C,R2-74,196,"ISO 27001",12,"#6B3E00",1.2,true,800);
   g+=`</g>`;
-  // pastille Synergy AI
+  // pastille Synergy AI (clic -> Esker AI)
   const[sx,sy]=pol(C,C,R1+2,180);
-  g+=`<g class="hubwrap" onclick="sel('gl')"><title>Global / Plateforme</title>
+  g+=`<g class="hubwrap" onclick="sel('ai')"><title>Synergy AI / Esker AI — ${byId('ai').videos.length} vidéos</title>
     <circle cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="42" fill="#fff" stroke="#F59E0B" stroke-width="3"/>
     <circle class="hubring rot-slow" style="transform-origin:${sx.toFixed(1)}px ${sy.toFixed(1)}px" cx="${sx.toFixed(1)}" cy="${sy.toFixed(1)}" r="48" fill="none" stroke="#F59E0B" stroke-width="1.6" stroke-dasharray="5 7" opacity=".6"/>
     ${icoAI(sx,sy-7,.72,"#B45309")}
